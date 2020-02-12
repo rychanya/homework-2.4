@@ -13,11 +13,13 @@ def parse_ingredient(ingredient: str):
 def get_cook_book_from_file():
     cook_book = {}
     with open('recipes.txt') as file:
-        while file.readline():
+        while True:
             dishes_name = file.readline().strip()
             ingredient_count = int(file.readline())
             ingredient_list = [parse_ingredient(file.readline()) for _ in range(ingredient_count)]
             cook_book[dishes_name] = ingredient_list
+            if not file.readline():
+                break
     return cook_book
 
 
